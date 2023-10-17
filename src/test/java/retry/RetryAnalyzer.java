@@ -9,6 +9,7 @@ public class RetryAnalyzer implements IRetryAnalyzer{
     @Override
     public boolean retry(ITestResult iTestResult) {
         if (count < maxRetry){
+            count++;
             return true;
         }
         return false;
