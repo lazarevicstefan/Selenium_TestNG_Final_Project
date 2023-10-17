@@ -43,6 +43,22 @@ public class LoginTests extends BasicTest {
                 , "Actual pop up message doesn't match expected pop up message");
         Assert.assertTrue(loginPage.verifyIsLoginPage()
                 , "Actual URL doesn't match expected URL");
+    }
+    @Test(priority = 4,retryAnalyzer = RetryAnalyzer.class)
+    public void displaysErrorsWhenPasswordIsWrong(){
+        String email = "admin@admin.com";
+        String wrongPassword = "password123";
+        String expectedErrorMessage = "Wrong password";
 
+        navPage.clickOnLoginButton();
+        loginPage.clearAndEnterEmail(email);
+        loginPage.clearAndEnterPassword(wrongPassword);
+        loginPage.clickOnLoginButton();
+
+        messagePopUpPage.waitForPopUpDialogToVisible();
+        Assert.assertEquals(messagePopUpPage.getPopUpMessageString(), expectedErrorMessage
+                , "Actual pop up message doesn't match expected pop up message");
+        Assert.assertTrue(loginPage.verifyIsLoginPage()
+                , "Actual URL doesn't match expected URL");
     }
 }
