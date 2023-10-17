@@ -61,4 +61,17 @@ public class LoginTests extends BasicTest {
         Assert.assertTrue(loginPage.verifyIsLoginPage()
                 , "Actual URL doesn't match expected URL");
     }
+    @Test(priority = 5,retryAnalyzer = RetryAnalyzer.class)
+    public void login (){
+        String email = "admin@admin.com";
+        String password = "12345";
+
+        navPage.clickOnLoginButton();
+        loginPage.clearAndEnterEmail(email);
+        loginPage.clearAndEnterPassword(password);
+        loginPage.clickOnLoginButton();
+
+        Assert.assertTrue(navPage.verifyIsHomePage()
+                , "Actual URL doesn't match expected URL");
+    }
 }

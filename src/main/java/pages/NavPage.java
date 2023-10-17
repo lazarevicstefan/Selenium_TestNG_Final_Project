@@ -20,6 +20,17 @@ public class NavPage extends BasicPage {
         }
         return false;
     }
+    public boolean verifyIsHomePage(){
+        try{
+            Thread.sleep(1000);
+            if (driver.getCurrentUrl().contains("/home")){
+                return true;
+            }
+        }catch (Exception e){
+            return false;
+        }
+        return false;
+    }
 
     public void clickOnHomePageButton() {
         wait.until(ExpectedConditions
