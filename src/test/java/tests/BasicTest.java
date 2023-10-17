@@ -25,7 +25,7 @@ import java.util.Date;
 public abstract class BasicTest {
     protected WebDriver driver;
     protected WebDriverWait wait;
-    protected String baseUrl = "";
+    protected String baseUrl = "https://vue-demo.daniel-avellaneda.com/";
     protected LoginPage loginPage;
     protected NavPage navPage;
     protected SignupPage signupPage;
