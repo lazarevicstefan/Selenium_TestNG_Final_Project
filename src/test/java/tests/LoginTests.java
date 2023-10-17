@@ -27,4 +27,22 @@ public class LoginTests extends BasicTest {
         Assert.assertEquals(actualPassword, expectedPassword
                 ,"Actual attribute value doesn't match expected attribute value");
     }
+    @Test(priority = 3,retryAnalyzer = RetryAnalyzer.class)
+    public void displaysErrorsWhenUserDoesNotExist(){
+        String wrongEmail = "non-existing-user@gmal.com";
+        String wrongPassword = "password123";
+        String expectedErrorMessage = "User does not exists";
+
+        navPage.clickOnLoginButton();
+        loginPage.clearAndEnterEmail(wrongEmail);
+        loginPage.clearAndEnterPassword(wrongPassword);
+        loginPage.clickOnLoginButton();
+
+        messagePopUpPage.waitForPopUpDialogToVisible();
+        Assert.assertEquals(messagePopUpPage.getPopUpMessageString(), expectedErrorMessage
+                , "Actual pop up message doesn't match expected pop up message");
+        Assert.assertTrue(loginPage.verifyIsLoginPage()
+                , "Actual URL doesn't match expected URL");
+
+    }
 }
