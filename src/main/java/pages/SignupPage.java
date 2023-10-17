@@ -23,20 +23,28 @@ public class SignupPage extends BasicPage{
 
     public void clearAndEnterName (String fullName){
         wait.until(ExpectedConditions
+                .visibilityOfElementLocated(By.id("name"))).clear();
+        wait.until(ExpectedConditions
                 .visibilityOfElementLocated(By.id("name")))
                         .sendKeys(fullName);
     }
     public void clearAndEnterEmail (String email){
+        wait.until(ExpectedConditions
+                .visibilityOfElementLocated(By.id("email"))).clear();
         wait.until(ExpectedConditions
                 .visibilityOfElementLocated(By.id("email")))
                         .sendKeys(email);
     }
     public void clearAndEnterPassword (String password){
         wait.until(ExpectedConditions
+                .visibilityOfElementLocated(By.id("password"))).clear();
+        wait.until(ExpectedConditions
                 .visibilityOfElementLocated(By.id("password")))
                         .sendKeys(password);
     }
     public void clearAndEnterPasswordConfirm (String passwordConfirm){
+        wait.until(ExpectedConditions
+                .visibilityOfElementLocated(By.id("confirmPassword"))).clear();
         wait.until(ExpectedConditions
                 .visibilityOfElementLocated(By.id("confirmPassword")))
                         .sendKeys(passwordConfirm);

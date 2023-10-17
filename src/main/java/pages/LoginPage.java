@@ -14,10 +14,14 @@ public class LoginPage extends BasicPage{
     }
     public void clearAndEnterEmail (String email){
         wait.until(ExpectedConditions
+                .visibilityOfElementLocated(By.id("email"))).clear();
+        wait.until(ExpectedConditions
                         .visibilityOfElementLocated(By.id("email")))
                                 .sendKeys(email);
     }
     public void clearAndEnterPassword (String password){
+        wait.until(ExpectedConditions
+                .visibilityOfElementLocated(By.id("password"))).clear();
         wait.until(ExpectedConditions
                         .visibilityOfElementLocated(By.id("password")))
                                 .sendKeys(password);
