@@ -74,4 +74,10 @@ public class LoginTests extends BasicTest {
         Assert.assertTrue(navPage.verifyIsHomePage()
                 , "Actual URL doesn't match expected URL");
     }
+    @Test(priority = 6,retryAnalyzer = RetryAnalyzer.class)
+    public void logout(){
+        Assert.assertTrue(navPage.getLogOutElement().isDisplayed()
+                ,"Logout button doesn't exist");
+        navPage.clickOnLogOutButton();
+    }
 }
