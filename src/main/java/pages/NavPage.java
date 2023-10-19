@@ -10,9 +10,9 @@ public class NavPage extends BasicPage {
     public NavPage(WebDriver driver, WebDriverWait wait) {
         super(driver, wait);
     }
-    public boolean verifyIsNavPage(){
+    public boolean verifyIsNavPageIsOnLanguage(String h1text){
         try{
-            if (driver.findElement(By.tagName("h1")).getText().equals("Landing")){
+            if (driver.findElement(By.tagName("h1")).getText().equals(h1text)){
                 return true;
             }
         }catch (Exception e){
