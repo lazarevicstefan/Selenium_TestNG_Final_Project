@@ -34,12 +34,14 @@ public class NavPage extends BasicPage {
 
     public void clickOnHomePageButton() {
         wait.until(ExpectedConditions
-                .visibilityOfElementLocated(By.xpath("//*[text()=' Home ']")))
+                .visibilityOfElementLocated(By
+                        .xpath("//div[@class='v-toolbar__items']/a[@href='/home']")))
                         .click();
     }
     public void clickOnAboutPageButton() {
         wait.until(ExpectedConditions
-                .visibilityOfElementLocated(By.xpath("//*[text()=' About ']")))
+                .visibilityOfElementLocated(By
+                        .xpath("//div[@class='v-toolbar__items']/a[@href='/about']")))
                         .click();
     }
     public void clickOnMyProfilePageButton() {
