@@ -28,6 +28,16 @@ public class MessagePopUpPage extends BasicPage {
                 .visibilityOfElementLocated(By
                         .xpath("//*[contains(@class, 'background ')]//li")));
     }
+    public void waitForPopUpSuccessfullyMessageToShow (){
+        wait.until(ExpectedConditions
+                .visibilityOfElementLocated(By
+                .cssSelector(".v-snack.v-snack--active")));
+    }
+    public String getSuccessfullyMessageString (){
+        return driver.findElement(By
+                .cssSelector(".v-snack.v-snack--active > div.success > div.v-snack__content"))
+                .getText();
+    }
     public void clickOnCloseButton (){
         wait.until(ExpectedConditions
                 .visibilityOfElementLocated(By
