@@ -77,7 +77,7 @@ public class AdminCitiesTests extends BasicTest{
         Assert.assertEquals(messagePopUpPage.getSuccessfullyMessageString(),expectedPopUpMessage
                 , "Actual pop up message doesn't match expected pop up message");
     }
-    @Test(priority = 5)
+    @Test(priority = 5, retryAnalyzer = RetryAnalyzer.class)
     public void searchCity(){
         String cityName = "Stefan Lazarevic's city Edited";
 
@@ -91,4 +91,28 @@ public class AdminCitiesTests extends BasicTest{
                         .getCellFromInputtedRowAndColumnString(1,2),cityName
                         ,"Actual city name doesn't match expected name");
     }
+    @Test(priority = 6)
+    public void deleteCity(){
+        String cityName = "Stefan Lazarevic's city Edited";
+        String expectedPopUpMessage = "Deleted successfully\nCLOSE";
+
+        navPage.clickOnAdminDropdownButton();
+        navPage.clickOnCitiesButtonFromAdminDropdown();
+
+        citiesPage.searchWithName(cityName);
+        citiesPage.waitForTableToShowInputtedRows(1);
+
+        Assert.assertEquals(citiesPage
+                        .getCellFromInputtedRowAndColumnString(1,2),cityName
+                ,"Actual city name doesn't match expected name");
+
+        citiesPage.clickOnDeleteButtonFromRow(1);
+        citiesPage.waitForNewItemAndDeleteDialogToBeShow();
+        citiesPage.clickOnDeleteButtonInDeleteDialog();
+
+        messagePopUpPage.waitForPopUpSuccessfullyMessageToShow();
+        Assert.assertEquals(messagePopUpPage.getSuccessfullyMessageString(),expectedPopUpMessage
+                , "Actual pop up message doesn't match expected pop up message");
+    }
+
 }
