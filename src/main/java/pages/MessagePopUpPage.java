@@ -47,8 +47,9 @@ public class MessagePopUpPage extends BasicPage {
     public String getTextFromVerifyYourAccount() {
         return wait.until(ExpectedConditions
                 .visibilityOfElementLocated(By
-                        .xpath("//*[contains(@class, 'v-card__text') and contains(@class, 'mt-4')]")))
-                                .getText();
+                        .xpath("//*[contains(@class, 'v-card__title') " +
+                                "and contains(@class, 'dlgVerifyAccount')]")))
+                                        .getText();
     }
     public void clickOnCloseButtonFromVerifyYourAccount(){
         wait.until(ExpectedConditions
