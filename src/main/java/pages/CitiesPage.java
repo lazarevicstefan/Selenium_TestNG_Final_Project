@@ -37,7 +37,7 @@ public class CitiesPage extends BasicPage{
                 .visibilityOfElementLocated(By
                         .xpath("//*[contains(@class, 'dialog__content--active')]/div/div")));
     }
-    public void waitForDeleteDialogToBeShow (){
+    public void waitForNewItemAndDeleteDialogToBeShow (){
         wait.until(ExpectedConditions
                 .visibilityOfElementLocated(By
                         .className("v-dialog--active")));
