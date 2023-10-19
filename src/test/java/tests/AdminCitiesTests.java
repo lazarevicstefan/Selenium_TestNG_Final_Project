@@ -24,25 +24,34 @@ public class AdminCitiesTests extends BasicTest{
     }
     @Test(priority = 2, retryAnalyzer = RetryAnalyzer.class)
     public void checksInputTypesForCreateEditNewCity () {
-        String adminEmail = "admin@admin.com";
-        String adminPassword = "12345";
         String expectedFieldText = "text";
-
-        navPage.clickOnLoginButton();
-
-        loginPage.clearAndEnterEmail(adminEmail);
-        loginPage.clearAndEnterPassword(adminPassword);
-        loginPage.clickOnLoginButton();
 
         navPage.clickOnAdminDropdownButton();
         navPage.clickOnCitiesButtonFromAdminDropdown();
 
         citiesPage.clickOnNewItemButton();
-        citiesPage.waitForDeleteDialogToBeShow();
+        citiesPage.waitForNewItemAndDeleteDialogToBeShow();
 
         String actualFieldText = citiesPage.getEnterNameInNewItemElement().getAttribute("type");
         Assert.assertEquals(actualFieldText,expectedFieldText
                 ,"Actual attribute value doesn't match expected attribute value");
+    }
+    @Test(priority = 3)
+    public void createNewCity(){
+        String city = "Stefan Lazarevic's city";
+        String expectedPopUpMessage = "Saved successfully\nCLOSE";
+
+        navPage.clickOnAdminDropdownButton();
+        navPage.clickOnCitiesButtonFromAdminDropdown();
+
+        citiesPage.clickOnNewItemButton();
+        citiesPage.waitForNewItemAndDeleteDialogToBeShow();
+
+        citiesPage.clearAndEnterNameInNewItem(city);
+        citiesPage.clickOnSaveButtonInEditAndCreateDialog();
+
+        messagePopUpPage.waitForPopUpSuccessfullyMessageToShow();
+        Assert.assertEquals(messagePopUpPage.getSuccessfullyMessageString(),expectedPopUpMessage, "");
 
     }
 }
