@@ -1,5 +1,6 @@
 package tests;
 
+import org.openqa.selenium.Keys;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import retry.RetryAnalyzer;
@@ -51,7 +52,29 @@ public class AdminCitiesTests extends BasicTest{
         citiesPage.clickOnSaveButtonInEditAndCreateDialog();
 
         messagePopUpPage.waitForPopUpSuccessfullyMessageToShow();
-        Assert.assertEquals(messagePopUpPage.getSuccessfullyMessageString(),expectedPopUpMessage, "");
+        Assert.assertEquals(messagePopUpPage.getSuccessfullyMessageString(),expectedPopUpMessage
+                , "Actual pop up message doesn't match expected pop up message");
+    }
+    @Test(priority = 4)
+    public void editCity (){
+        String oldCityName = "Stefan Lazarevic's city";
+        String newCityName = "Stefan Lazarevic's city Edited";
+        String expectedPopUpMessage = "Saved successfully\nCLOSE";
 
+        navPage.clickOnAdminDropdownButton();
+        navPage.clickOnCitiesButtonFromAdminDropdown();
+
+        citiesPage.searchWithName(oldCityName);
+        citiesPage.waitForTableToShowInputtedRows(1);
+        citiesPage.clickOnEditButtonFromRow(1);
+        citiesPage.waitForNewItemAndDeleteDialogToBeShow();
+
+        citiesPage.getEnterNameInNewItemElement().sendKeys(Keys.CONTROL,"a", Keys.DELETE);
+        citiesPage.clearAndEnterNameInNewItem(newCityName);
+        citiesPage.clickOnSaveButtonInEditAndCreateDialog();
+
+        messagePopUpPage.waitForPopUpSuccessfullyMessageToShow();
+        Assert.assertEquals(messagePopUpPage.getSuccessfullyMessageString(),expectedPopUpMessage
+                , "Actual pop up message doesn't match expected pop up message");
     }
 }
