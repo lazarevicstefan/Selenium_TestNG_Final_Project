@@ -42,6 +42,11 @@ public class CitiesPage extends BasicPage{
                 .visibilityOfElementLocated(By
                         .className("v-dialog--active")));
     }
+    public void searchWithName (String name){
+        wait.until(ExpectedConditions
+                .visibilityOfElementLocated(By.id("search")))
+                .sendKeys(name);
+    }
     public void clickOnSaveButtonInEditAndCreateDialog (){
         wait.until(ExpectedConditions
                 .visibilityOfElementLocated(By
