@@ -25,5 +25,26 @@ public class SignupTests extends BasicTest{
         Assert.assertEquals(actualPassword, expectedPassword
                 ,"Actual attribute value doesn't match expected attribute value");
     }
+    @Test(priority = 3,retryAnalyzer = RetryAnalyzer.class)
+    public void displaysErrorsWhenUserAlreadyExists (){
+        String fullName = "Another User";
+        String email = "admin@admin.com";
+        String password = "12345";
+        String confirmPassword = "12345";
+        String expectedErrorMessage = "E-mail already exists";
 
+        navPage.clickOnSignUpButton();
+        Assert.assertTrue(signupPage.verifyIsSignupPage()
+                , "Actual URL doesn't match expected URL");
+
+        signupPage.clearAndEnterName(fullName);
+        signupPage.clearAndEnterEmail(email);
+        signupPage.clearAndEnterPassword(password);
+        signupPage.clearAndEnterPasswordConfirm(confirmPassword);
+        signupPage.clickOnSignMeUpButton();
+
+        messagePopUpPage.waitForPopUpDialogToVisible();
+        Assert.assertEquals(messagePopUpPage.getPopUpMessageString(),expectedErrorMessage
+                ,"Actual pop up message doesn't match expected pop up message");
+    }
 }
