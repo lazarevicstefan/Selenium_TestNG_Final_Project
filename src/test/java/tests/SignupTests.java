@@ -47,10 +47,10 @@ public class SignupTests extends BasicTest{
         Assert.assertEquals(messagePopUpPage.getPopUpMessageString(),expectedErrorMessage
                 ,"Actual pop up message doesn't match expected pop up message");
     }
-    @Test(priority = 4)
+    @Test(priority = 4, retryAnalyzer = RetryAnalyzer.class)
     public void signup () {
         String fullName = "Stefan Lazarevic";
-        String email = "stefan.lazarevic@itbootcamp.rsaaaaaaqaaaaqqqaaaa";
+        String email = "stefan.lazarevic@itbootcamp.rs";
         String password = "12345";
         String confirmPassword = "12345";
         String expectedImportantMessage = "IMPORTANT: Verify your account";
