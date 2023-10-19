@@ -47,4 +47,30 @@ public class SignupTests extends BasicTest{
         Assert.assertEquals(messagePopUpPage.getPopUpMessageString(),expectedErrorMessage
                 ,"Actual pop up message doesn't match expected pop up message");
     }
+    @Test(priority = 4)
+    public void signup () {
+        String fullName = "Stefan Lazarevic";
+        String email = "stefan.lazarevic@itbootcamp.rsaaaaaaqaaaaqqqaaaa";
+        String password = "12345";
+        String confirmPassword = "12345";
+        String expectedImportantMessage = "IMPORTANT: Verify your account";
+
+        navPage.clickOnSignUpButton();
+
+        signupPage.clearAndEnterName(fullName);
+        signupPage.clearAndEnterEmail(email);
+        signupPage.clearAndEnterPassword(password);
+        signupPage.clearAndEnterPasswordConfirm(confirmPassword);
+        signupPage.clickOnSignMeUpButton();
+
+        navPage.clickOnHomePageButton();
+
+        Assert.assertEquals(messagePopUpPage.getTextFromVerifyYourAccount()
+                ,expectedImportantMessage
+                ,"Actual pop up message doesn't match expected pop up message");
+
+        messagePopUpPage.clickOnCloseButtonFromVerifyYourAccount();
+
+        navPage.clickOnLogOutButton();
+    }
 }
