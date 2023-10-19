@@ -14,5 +14,13 @@ public class LocaleTests extends BasicTest{
         Assert.assertTrue(navPage.verifyIsNavPageIsOnLanguage(expectedHeaderText)
                 ,"Actual header text doesn't match expected header text");
     }
+    @Test(priority = 2,retryAnalyzer = RetryAnalyzer.class)
+    public void setLocaleToEN(){
+        String expectedHeaderText = "Landing";
 
+        navPage.clickOnLanguageDropdownButton();
+        navPage.clickOnENButtonFromLanguageDropdown();
+        Assert.assertTrue(navPage.verifyIsNavPageIsOnLanguage(expectedHeaderText)
+                ,"Actual header text doesn't match expected header text");
+    }
 }
