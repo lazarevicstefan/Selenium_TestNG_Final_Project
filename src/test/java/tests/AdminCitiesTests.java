@@ -23,7 +23,7 @@ public class AdminCitiesTests extends BasicTest{
         Assert.assertTrue(citiesPage.verifyIsAdminCitiesPage()
                 , "Actual URL doesn't match expected URL");
     }
-    @Test(priority = 2, retryAnalyzer = RetryAnalyzer.class)
+    @Test(priority = 2)
     public void checksInputTypesForCreateEditNewCity () {
         String expectedFieldText = "text";
 
@@ -55,7 +55,7 @@ public class AdminCitiesTests extends BasicTest{
         Assert.assertEquals(messagePopUpPage.getSuccessfullyMessageString(),expectedPopUpMessage
                 , "Actual pop up message doesn't match expected pop up message");
     }
-    @Test(priority = 4)
+    @Test(priority = 4,retryAnalyzer = RetryAnalyzer.class)
     public void editCity (){
         String oldCityName = "Stefan Lazarevic's city";
         String newCityName = "Stefan Lazarevic's city Edited";
@@ -76,5 +76,19 @@ public class AdminCitiesTests extends BasicTest{
         messagePopUpPage.waitForPopUpSuccessfullyMessageToShow();
         Assert.assertEquals(messagePopUpPage.getSuccessfullyMessageString(),expectedPopUpMessage
                 , "Actual pop up message doesn't match expected pop up message");
+    }
+    @Test(priority = 5)
+    public void searchCity(){
+        String cityName = "Stefan Lazarevic's city Edited";
+
+        navPage.clickOnAdminDropdownButton();
+        navPage.clickOnCitiesButtonFromAdminDropdown();
+
+        citiesPage.searchWithName(cityName);
+        citiesPage.waitForTableToShowInputtedRows(1);
+
+        Assert.assertEquals(citiesPage
+                        .getCellFromInputtedRowAndColumnString(1,2),cityName
+                        ,"Actual city name doesn't match expected name");
     }
 }
