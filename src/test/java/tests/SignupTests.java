@@ -11,4 +11,19 @@ public class SignupTests extends BasicTest{
         Assert.assertTrue(signupPage.verifyIsSignupPage()
                 , "Actual URL doesn't match expected URL");
     }
+    @Test(priority = 2,retryAnalyzer = RetryAnalyzer.class)
+    public void checksInputTypes(){
+        String expectedEmail = "email";
+        String expectedPassword = "password";
+
+        navPage.clickOnSignUpButton();
+        String actualEmail = signupPage.getEmailElement().getAttribute("type");
+        String actualPassword = signupPage.getPasswordElement().getAttribute("type");
+
+        Assert.assertEquals(actualEmail, expectedEmail
+                ,"Actual attribute value doesn't match expected attribute value");
+        Assert.assertEquals(actualPassword, expectedPassword
+                ,"Actual attribute value doesn't match expected attribute value");
+    }
+
 }
