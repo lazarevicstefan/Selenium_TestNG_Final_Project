@@ -22,4 +22,27 @@ public class AdminCitiesTests extends BasicTest{
         Assert.assertTrue(citiesPage.verifyIsAdminCitiesPage()
                 , "Actual URL doesn't match expected URL");
     }
+    @Test(priority = 2, retryAnalyzer = RetryAnalyzer.class)
+    public void checksInputTypesForCreateEditNewCity () {
+        String adminEmail = "admin@admin.com";
+        String adminPassword = "12345";
+        String expectedFieldText = "text";
+
+        navPage.clickOnLoginButton();
+
+        loginPage.clearAndEnterEmail(adminEmail);
+        loginPage.clearAndEnterPassword(adminPassword);
+        loginPage.clickOnLoginButton();
+
+        navPage.clickOnAdminDropdownButton();
+        navPage.clickOnCitiesButtonFromAdminDropdown();
+
+        citiesPage.clickOnNewItemButton();
+        citiesPage.waitForDeleteDialogToBeShow();
+
+        String actualFieldText = citiesPage.getEnterNameInNewItemElement().getAttribute("type");
+        Assert.assertEquals(actualFieldText,expectedFieldText
+                ,"Actual attribute value doesn't match expected attribute value");
+
+    }
 }
