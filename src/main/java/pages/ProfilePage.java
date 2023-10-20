@@ -22,7 +22,12 @@ public class ProfilePage extends BasicPage{
         }
         return false;
     }
+    public String getValueForDisableEmail (){
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        return js.executeScript("return arguments[0].getAttribute('disabled');"
+                , getProfileEmailElement()).toString();
 
+    }
     public String getProfileEmailString (){
         return getProfileEmailElement()
                         .getAttribute("value");
