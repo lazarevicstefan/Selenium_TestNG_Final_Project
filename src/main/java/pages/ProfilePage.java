@@ -1,9 +1,6 @@
 package pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -21,6 +18,9 @@ public class ProfilePage extends BasicPage{
             return false;
         }
         return false;
+    }
+    public void clickOnSaveButton (){
+        driver.findElement(By.cssSelector(".flex.text-xs-center.mt-5 > button")).click();
     }
     public String getValueForDisableEmail (){
         JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -56,6 +56,7 @@ public class ProfilePage extends BasicPage{
     public WebElement getProfileCityElement(){
         return driver.findElement(By.id("city"));
     }
+
     public String getProfileCountryString (){
         return getProfileCountryElement()
                 .getAttribute("value");
@@ -77,57 +78,65 @@ public class ProfilePage extends BasicPage{
     public WebElement getProfileGitHubElement (){
         return driver.findElement(By.id("urlGitHub"));
     }
-
-
-
-
-
     public void clearAndEnterProfileName (String name){
-        wait.until(ExpectedConditions
-                        .visibilityOfElementLocated(By.name("name")))
-                                .clear();
-        wait.until(ExpectedConditions
-                        .visibilityOfElementLocated(By.name("name")))
-                                .sendKeys(name);
+        try {
+            Thread.sleep(1000);
+            wait.until(ExpectedConditions
+                            .visibilityOfElementLocated(By.id("name")))
+                    .sendKeys(Keys.CONTROL,"a", Keys.DELETE);
+            wait.until(ExpectedConditions
+                            .visibilityOfElementLocated(By.id("name")))
+                    .sendKeys(name);
+        }catch (Exception e){}
     }
     public void clearAndEnterProfilePhone (String phone){
+        try {
+            Thread.sleep(1000);
         wait.until(ExpectedConditions
-                        .visibilityOfElementLocated(By.name("phone")))
-                                .clear();
+                        .visibilityOfElementLocated(By.id("phone")))
+                                .sendKeys(Keys.CONTROL,"a", Keys.DELETE);
         wait.until(ExpectedConditions
-                        .visibilityOfElementLocated(By.name("phone")))
+                        .visibilityOfElementLocated(By.id("phone")))
                                 .sendKeys(phone);
+        }catch (Exception e){}
     }
     public void clearAndEnterProfileCity (String city){
-        wait.until(ExpectedConditions
-                        .visibilityOfElementLocated(By.name("city")))
-                                .clear();
-        wait.until(ExpectedConditions
-                        .visibilityOfElementLocated(By.name("city")))
-                                .sendKeys(city);
+        driver.findElement(By.id("city")).click();
+        driver.findElement(By
+                        .xpath("//*[contains(text(), '" + city + "')]"))
+                .click();
     }
     public void clearAndEnterProfileCountry (String country){
+        try {
+            Thread.sleep(1000);
         wait.until(ExpectedConditions
-                        .visibilityOfElementLocated(By.name("country")))
-                                .clear();
+                        .visibilityOfElementLocated(By.id("country")))
+                                .sendKeys(Keys.CONTROL,"a", Keys.DELETE);
         wait.until(ExpectedConditions
-                        .visibilityOfElementLocated(By.name("country")))
+                        .visibilityOfElementLocated(By.id("country")))
                                 .sendKeys(country);
+        }catch (Exception e){}
     }
     public void clearAndEnterProfileTwitter (String urlTwitter){
+        try {
+            Thread.sleep(1000);
         wait.until(ExpectedConditions
-                        .visibilityOfElementLocated(By.name("urlTwitter")))
-                                .clear();
+                        .visibilityOfElementLocated(By.id("urlTwitter")))
+                                .sendKeys(Keys.CONTROL,"a", Keys.DELETE);
         wait.until(ExpectedConditions
-                        .visibilityOfElementLocated(By.name("urlTwitter")))
+                        .visibilityOfElementLocated(By.id("urlTwitter")))
                                 .sendKeys(urlTwitter);
+        }catch (Exception e){}
     }
     public void clearAndEnterProfileGitHub (String urlGitHub){
+        try {
+            Thread.sleep(1000);
         wait.until(ExpectedConditions
-                        .visibilityOfElementLocated(By.name("urlGitHub")))
-                                .clear();
+                        .visibilityOfElementLocated(By.id("urlGitHub")))
+                                .sendKeys(Keys.CONTROL,"a", Keys.DELETE);
         wait.until(ExpectedConditions
-                        .visibilityOfElementLocated(By.name("urlGitHub")))
+                        .visibilityOfElementLocated(By.id("urlGitHub")))
                                 .sendKeys(urlGitHub);
+        }catch (Exception e){}
     }
 }
